@@ -1,22 +1,10 @@
 <?php
 
-/**
- * @file
- * The PHP page that serves all page requests on a Drupal installation.
- *
- * All Drupal code is released under the GNU General Public License.
- * See COPYRIGHT.txt and LICENSE.txt files in the "core" directory.
- */
+require_once 'Application.php';
+require_once 'config/DbConfig.php';
 
-use Drupal\Core\DrupalKernel;
-use Symfony\Component\HttpFoundation\Request;
+define("PUBLIC_URL", \config\DbConfig::getConfig()['public_url']);
+define("BASE_URL", \config\DbConfig::getConfig()['base_url']);
 
-$autoloader = require_once 'autoload.php';
-
-$kernel = new DrupalKernel('prod', $autoloader);
-
-$request = Request::createFromGlobals();
-$response = $kernel->handle($request);
-$response->send();
-
-$kernel->terminate($request, $response);
+$app = new Application();
+$app->run();
