@@ -1,0 +1,7 @@
+var $ = window.jQuery;
+$(function(){
+
+    //
+    
+    
+});

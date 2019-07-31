@@ -1,0 +1,50 @@
+main.main#fullpage
+   section.section.section1#projects.main-wrap.home-slider.home-slider_top
+      //-.slider-wrap#sliders.wow.animate.fadeInUp(data-wow-delay=".5s" data-wow-duration="1s")
+      .slider-wrap#sliders.wow(data-wow-duration="2s")
+         .slides#revslider_frpage(style="display:none;", data-version="5.4.7.4")
+            ul#revslider-list
+                li(data-transition="slotzoom-horizontal", data-slotamount="6", data-hideafterloop="0", data-hideslideonmobile="off",  data-easein="Power2.easeInOut", data-easeout="Power2.easeInOut", data-masterspeed="1000", data-rotate="0", data-saveperformance="off", data-title="Slide")
+                    img(src="./img/slide1.jpg", alt="gordinsky").slides__img
+                li(data-transition="slotzoom-horizontal", data-slotamount="6", data-hideafterloop="0", data-hideslideonmobile="off",  data-easein="Power2.easeInOut", data-easeout="Power2.easeInOut", data-masterspeed="1000", data-rotate="0", data-saveperformance="off", data-title="Slide")
+                    img(src="./img/slide2.jpg", alt="gordinsky").slides__img
+         .about#about
+            a(href="#").about__close.about__close_mob1#about-close.non-focused
+            .about__wrap
+               .about__text-wrap
+                  p.about__year 2009
+                  p.about__text.about_left Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident nisi aut ipsam temporibus, sed, sint nesciunt culpa ea eius mollitia adipisci labore hic voluptatibus consequatur voluptas excepturi nulla id delectus qui quas ullam odio debitis reiciendis suscipit. Adipisci delectus magnam, recusandae quidem et minus ipsa? Quod, cumque eos at sit nisi eveniet laborum maxime culpa iste ab atque delectus itaque a perspiciatis dignissimos facilis minima incidunt in quasi, sunt dolores.
+               .about__text-wrap
+                  p.about__year 2012
+                  p.about__text.about_left Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident nisi aut ipsam temporibus, sed, sint nesciunt culpa ea eius mollitia adipisci labore hic voluptatibus consequatur voluptas excepturi nulla id delectus qui quas ullam odio debitis reiciendis suscipit. Adipisci delectus magnam, recusandae quidem et minus ipsa? Quod, cumque eos at sit nisi eveniet laborum maxime culpa iste ab atque delectus itaque a perspiciatis dignissimos facilis minima incidunt in quasi, sunt dolores.
+               .about__text-wrap
+                  p.about__year 2015
+                  p.about__text.about_left Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident nisi aut ipsam temporibus, sed, sint nesciunt culpa ea eius mollitia adipisci labore hic voluptatibus consequatur voluptas excepturi nulla id delectus qui quas ullam odio debitis reiciendis suscipit. Adipisci delectus magnam, recusandae quidem et minus ipsa? Quod, cumque eos at sit nisi eveniet laborum maxime culpa iste ab atque delectus itaque a perspiciatis dignissimos facilis minima incidunt in quasi, sunt dolores.
+               .about__text-wrap
+                  p.about__year 2017
+                  p.about__text.about_left Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident nisi aut ipsam temporibus, sed, sint nesciunt culpa ea eius mollitia adipisci labore hic voluptatibus consequatur voluptas excepturi nulla id delectus qui quas ullam odio debitis reiciendis suscipit. Adipisci delectus magnam, recusandae quidem et minus ipsa? Quod, cumque eos at sit nisi eveniet laborum maxime culpa iste ab atque delectus itaque a perspiciatis dignissimos facilis minima incidunt in quasi, sunt dolores.
+               .about__text-wrap
+                  p.about__year 2019
+                  p.about__text.about_left Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident nisi aut ipsam temporibus, sed, sint nesciunt culpa ea eius mollitia adipisci labore hic voluptatibus consequatur voluptas excepturi nulla id delectus qui quas ullam odio debitis reiciendis suscipit. Adipisci delectus magnam, recusandae quidem et minus ipsa? Quod, cumque eos at sit nisi eveniet laborum maxime culpa iste ab atque delectus itaque a perspiciatis dignissimos facilis minima incidunt in quasi, sunt dolores.
+         a(href="#").about-link#about-link <span class="about-link__more">узнать больше</span> о студии
+      a(href="#about-me" data-wow-delay="1.5s" data-wow-duration="1s").arrow-down.arrow-down_bottom1.wow.fadeIn.non-focused
+      div.main-title__wrap
+         p.main-title.main-title_letspacing студия дизайна
+         p.main-title Андрея Гординского
+   section.section.section2#about-me.main-wrap.home-welcome
+      .rects
+         .rect1#rect1.wow.fadeInLeft(data-wow-offset="10" data-wow-delay=".5s" data-wow-duration="3s")
+         .rect2__wrap
+            .title__wrap.title_left.wow.fadeInUp(data-wow-delay="1s" data-wow-duration="3s")
+               p.title#title-name 
+                  <span class="title__letter">A</span>ндрей Гординский
+               p.titlet#title-cont
+               p.title__text - дизайнер и архитектор, основатель дизайн-бюро Gordinsky architect.
+               p.title__text <span class="title__lgtext"> Наше направление </span> - архитектурное проектирование и дизайн интерьера.
+               p.title__text <span class="title__lgtext">Цель студии </span> – создать удивительное и неповторимое, раскрывая по новому дизайн и функционал планирования жилого пространства. 
+            .rect2.wow.fadeInRight(data-wow-delay=".5s" data-wow-duration="3s")
+               .rect2__img-wrap.wow.fadeIn(data-wow-delay="3s" data-wow-duration="3s")
+                  img(src="img/autor-man.png" alt="author").rect2__img
+            a(href="#section3" data-wow-delay="3s" data-wow-duration="1s" onClick="$.fn.fullpage.moveTo('section3');")#downFrontpage.arrow-down.arrow-down_bottom2.wow.fadeIn.non-focused
+   section.section.section3.fp-auto-height#footer
+      include _footer

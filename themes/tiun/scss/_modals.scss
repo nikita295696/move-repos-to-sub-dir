@@ -1,0 +1,394 @@
+// 3 types of modals:
+// Zina` api, search and Cart
+
+
+$clr_lazur: #2393ab;
+$clr_viola: #653595;
+
+// webforms
+// uni
+.order-service-anchor{
+  display: inline-block;
+  color: #f8faf9;
+  font-size: 1.1em;
+  padding: 0.8em 3.33em 0.7em;
+  margin: 0 0 0.3em;
+  //border-radius: 17px;
+  border: none;
+  border-bottom: 6px solid #13788C;
+  background-clip: padding-box;
+  background: $clr_lazur;
+  @media (max-width: 991px) {font-size: 1.2em}
+  @media (max-width: 916px) {padding: 0.6em 3.33em 0.7em}
+  //@media (max-width: 916px) {border-radius: 12px}
+  //@media (max-width: 490px) {padding: 1em 1.4em}
+
+  transition: all 0.3s ease-in-out 0s;
+  &:hover{
+    text-decoration: none;
+    color: #d0cdcb;
+  }
+  &:focus{outline: none}
+  &:active{
+    color:#920303;
+    text-decoration: none;
+  }
+}
+  // ovrde
+  .form-in-node{
+    @media (max-width: 767px) {margin: 0 0 1em}
+    .order-service-anchor{
+      //border-radius: 0;
+    }
+    .modal-dialog{
+      @media (max-width: 767px) {margin: 0}
+    }
+      .modal-body{
+        @media (max-width: 767px) {padding: 0.5em 0 1em}
+      }
+        .submit_wrap button{
+          padding: 0.8em 3.33em 0.7em;
+        }
+  }
+
+
+.modal{
+  input, select, textarea{
+    background: #fcf9f2;
+    font-size: 1.2em;
+    padding: 0.2em 0.5em 0.3em;
+    @media (max-width: 767px) {font-size: 1.1em}
+  }
+  input, select{
+    height: 38px;
+    border: 1px solid #bfbfbf;
+  }
+  [type="text"], [type="tel"]{
+    margin: 0 0 1em;
+    //@media (max-width: 1199px) {margin: 0 0 21px}
+  }
+  .form-group{margin: 0}
+}
+  .modal-dialog{
+    @media (max-width: 1199px){font-size: 0.9em}
+    @media (max-width: 991px) {font-size: 0.8em}
+  }
+  .modal-lg{
+    @media (min-width: 917px) {
+      max-width: 800px;
+      width: 800px;
+      .modal-content{padding: 1.5em 0}
+    }
+    .modal-content{
+      @media (max-width: 16px) {padding: 1.4em 0}
+    }
+  }
+    .modal-content{
+      background: #fcf9f2;
+      border-radius: 0
+    }
+      .modal-header{
+        padding: 1.8em 0.7em 1.3em;
+        justify-content: flex-end;
+        text-align: center;
+        border: none;
+        //@media (max-width: 916px) {padding: 0}
+        .modal-title{
+          line-height: 1.2;
+          color: $clr_viola;
+          font-size: 2.3em;
+          font-family: $ff_BravoRG;
+          text-align: center;
+          //letter-spacing: 2px;
+          margin: 0 30px;
+        }
+        .close{
+          position: absolute;
+            right: 15px;
+            top: 10px;
+          order: 1;
+          font-family: initial;
+          font-size: 4.6em;
+          font-weight: normal;
+          margin: -13px 0 0;
+          z-index: 1;
+          @media (max-width: 767px) { top: 3px; right: 5px;}
+          &:focus{outline: none}
+        }
+      }
+      .modal-body{
+        text-align: center;
+        padding: 0.5em 1.5em 2em;
+        .container-fluid{
+          @media (max-width: 490px) {padding: 0}
+        }
+        form{
+          input, textarea{
+            padding: 0.2em 0.8em;
+            width: 100%;
+          }
+          textarea{
+            min-height: 193px !important;
+            padding-top: 0.8em;
+            @media (max-width: 1199px){min-height: 188px !important}
+            @media (max-width: 991px) {min-height: 184px !important}
+            @media (max-width: 916px) {min-height: 160px !important}
+            @media (max-width: 767px) {min-height: 157px !important}
+          }
+          [type="checkbox"]{
+            padding: 0;
+          }
+        }
+      }
+        .modal_row{}
+          .modal_form_col{
+            float: left;
+            width: 50%;
+            &:first-child{
+              width: 47.5%;
+              padding: 0 10px 0 0;
+              margin: 0 2.5% 0 0;
+            }
+            &:last-child{
+              padding: 0 0 0 10px;
+            }
+            &:nth-child(n){
+              @media (max-width: 490px) {width: 100%; padding: 0}
+            }
+          }
+          [name="username"]{display: none} // honeypot
+          .submit_wrap{
+            @include clearfix;
+            text-align: center;
+            button{
+              height: 58px;
+              @extend .order-service-anchor;
+              text-transform: uppercase;
+              font-size: inherit;
+              letter-spacing: 0.5px;
+              margin: 1.3em 0 1em;
+              @media (max-width: 916px) {height: 42px}
+              &:hover{
+                //color: white; //#0f0b46;
+                //background: #4fb8e6;
+              }
+              &:active {
+                transform: translateY(0.2em);
+                text-shadow: rgba(255,255,255,0.5) 0 -1px 0,rgba(0,0,0,0.18) 0 0.18em 0.15em;
+              }
+            }
+          }
+      .modal-footer{}
+// ovrde
+  .form-in-node{
+
+  }
+
+
+// login, Register, Reset your password forms
+[id='drupal-modal']{
+  .modal-header{}
+  .modal-body{
+    padding: 0 5em;
+    @media (max-width: 991px) {padding: 0 2.5em}
+    @media (max-width: 490px) {padding: 0 15px}
+  }
+    .user-login-form{
+      width: auto;
+      margin: 0 0 1em;
+    }
+      .login-title{
+        display: none;
+      }
+      [type="text"]{
+        margin: 0;
+      }
+  .modal-footer{
+    text-align: center;
+    padding: 0 0 15px;
+    margin: 0 0 1em;
+    border: none;
+    button{
+      @extend .order-service-anchor;
+      position: relative;
+      padding: 6px 3.7em 5px;
+      text-transform: uppercase;
+      border-radius: 0;
+      margin: 0;
+    }
+  }
+    button.form-submit:focus{
+      background: $clr_lazur;
+    }
+}
+
+
+// align modals at vert. center
+.modal {
+  text-align: center;
+  padding: 0!important;
+  &:before {
+    @media (min-width: 630px) {content: ''}
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+    @media (max-width: 575px) {display: none}
+  }
+}
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+// fix html shift while modal shows
+body.modal-open {
+  overflow: auto;
+}
+body.modal-open[style] {
+  padding-right: 0 !important;
+}
+.modal::-webkit-scrollbar {
+  width: 0 !important; //removes the scrollbar but still scrollable
+  // reference: http://stackoverflow.com/a/26500272/2259400
+}
+
+
+// Google reCaptcha
+.g-recaptcha{
+  display: none;
+}
+
+
+#modal-order-service{
+  .modal-dialog{
+    width: auto;
+  }
+}
+
+
+#modal-callback{
+  input, select{
+    height: 50px;
+    @media (max-width: 916px) {height: 42px}
+  }
+
+  .modal-header{
+    padding: 0 15px 0;
+  }
+    .modal-title{
+      //font-family: $ff_roboto_Condensed;
+      //text-align: left;
+      //color: #B5162A;
+      //font-size: 2.7em;
+      padding: 0 0 0.2em;
+      margin-bottom: 0.6em;
+      @media (max-width: 916px) {font-size: 2.5em; line-height: 1; padding: 0.5em 0 0; margin-bottom: 0.5em}
+      @media (max-width: 767px) {margin: 0 0.4em 0.2em}
+    }
+    .modal-subtitle{
+      text-align: left;
+      font-size: 1.2em;
+    }
+  .modal-body{}
+    form{
+      text-align: left;
+    }
+      .submit_wrap{
+        button{
+          @extend .order-service-anchor;
+          position: relative;
+          //padding: 3px 0.7em 3px;
+          margin: 0;
+        }
+      }
+      .modal_row{
+        overflow: auto;
+        margin: 0 0 3em;
+        @media (max-width: 991px) {margin: 0 0 1.6em}
+      }
+}
+
+
+#modal-call-extra{}
+  .member_conditions{
+    // Умови набуття членства
+    display: inline-block;
+    margin: 0 0 1em;
+    color: $clr_lazur;
+    text-decoration: underline;
+    &:hover{
+      color: $clr_viola;
+    }
+  }
+
+
+#modal-call-extra-info,
+#modal-to-anonymous{
+  .modal-header{
+    @media (max-width: 916px) {padding: 1.5em 0 0}
+  }
+}
+
+
+[id='modal-to-anonymous']{
+  .modal-subtitle{
+    color: $clr_viola;
+    font-family: $ff_BravoRG;
+    font-size: 2.3em;
+    line-height: 1;
+    width: 10em;
+    margin: 0 auto 1.2em;
+    @media (max-width: 490px) {font-size: 1.7em}
+  }
+  .modal-body{
+    padding-bottom: 5em;
+  }
+}
+  .modal-member_conditions{
+    font-size: 1.2em;
+    a{
+      color: $clr_lazur;
+      text-decoration: underline;
+    }
+  }
+
+
+// cart
+.modal-open .modal{
+  //background: transparent;
+}
+header{
+  .modal-open &{
+    //z-index: 1041; // breaks orinary modal background
+  }
+}
+.cart-block--contents{
+  //width: auto;
+}
+.modal-backdrop.in{
+  //z-index: 3;
+}
+#cart-modal{
+  //[value="Update cart"]{display: none}
+}
+
+
+// login
+.anchors_wrap{
+  @media (max-width: 540px) {
+    position: relative;
+    left: 1em;
+  }
+  .social-auth-links &{
+    @media (max-width: 540px) {display: block}
+  }
+  a{
+    &:first-child{
+      margin: 0 1.5em 0 0;
+    }
+  }
+  .auth-link img{
+    @media (max-width: 490px) {height: 30px}
+  }
+}

@@ -1,0 +1,34 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family:Gulim;
+    // Гарнитура шрифта
+    src: url(fonts/gulim.ttf);
+    // Путь к файлу со шрифтом
+}
+body {
+    min-width: 320px;
+    font-family: Gulim, sans-serif;
+    color: #000;
+    font-size: 18px;
+}
+
+@import "import/vars";
+@import "import/mixins";
+@import "import/aside";
+@import "import/header";
+@import "import/pages/main";
+@import "import/pages/portfolio";
+@import "import/pages/project";
+@import "import/pages/services";
+@import "import/pages/service";
+@import "import/pages/contact";
+@import "import/footer";
+@import "import/template";
+@import "import/media";

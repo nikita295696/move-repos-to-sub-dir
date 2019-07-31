@@ -1,0 +1,14 @@
+<div class="portfolio main-wrap base-wrap">
+  <div class="portfolio__top-back"></div><a class="arrow-down arrow-down_bottom1 arrow-down_fixed wow fadeIn non-focused" href="#about-me" data-wow-delay="3s" data-wow-duration="1s" id="downPortfolio"></a>
+
+  <div class="port-wrap">
+    <div *ngFor="let project of projects" class="portpic__wrap {{project.getIsLeft() ? 'portpic__wrap_left' : 'portpic__wrap_right'}}" id="{{project.getId()}}Project" (click)="saveClickProject($event, project.getId())">
+      <a class="portpic__block {{project.getIsLeft() ? 'portpic__block_left wow fadeInLeft' : 'portpic__block_right wow fadeInRight'}}" [routerLink]="['/project', project.getId()]"  data-wow-duration="3s">
+        <img class="portpic__img {{project.getIsLeft() ? 'portpic__img_left' : 'portpic__img_right'}}" src="{{project.getBaseImage()}}" alt="gordinsky">
+        <div class="portpic__line {{project.getIsLeft() ? 'portpic__line_left' : 'portpic__line_right'}}">
+          <p class="portpic__name {{project.getIsLeft() ? 'portpic__name_left' : 'portpic__name_right'}}">{{project.getTitle()}}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

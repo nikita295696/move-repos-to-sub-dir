@@ -1,0 +1,29 @@
+global-styling:
+  css:
+    theme:
+      # js/vendor/jquery.smartmenus.bootstrap.css: {}
+      css/colorbox.css: {}
+      css/main.css: {}
+      
+bootstrap-scripts:
+  js:
+    bootstrap/javascripts/bootstrap/affix.js: {}
+    bootstrap/javascripts/bootstrap/alert.js: {}
+    bootstrap/javascripts/bootstrap/button.js: {}
+    bootstrap/javascripts/bootstrap/carousel.js: {}
+    bootstrap/javascripts/bootstrap/collapse.js: {}
+    bootstrap/javascripts/bootstrap/modal.js: {}
+    bootstrap/javascripts/bootstrap/tooltip.js: {}
+    bootstrap/javascripts/bootstrap/popover.js: {}
+    bootstrap/javascripts/bootstrap/scrollspy.js: {}
+    bootstrap/javascripts/bootstrap/tab.js: {}
+    bootstrap/javascripts/bootstrap/transition.js: {}
+    # js/vendor/jquery.smartmenus.js: {}
+    # js/vendor/jquery.smartmenus.bootstrap.js: {}
+    # js/modal_forms.js: {}
+    # js/utils.js: {}
+    js/jquery.inputmask.bundle.min.js: {}
+    js/jquery.jcarousel.min.js: {}
+    js/jcarousel.responsive.js: {}
+    js/jquery.jcarousel-swipe.min.js: {}
+    js/main.js: {}

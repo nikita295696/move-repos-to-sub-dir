@@ -1,0 +1,100 @@
+.sidebar-wrap{
+    padding-left: 261px;
+}
+.sidebar{
+    @extend %baseFlex;
+    @extend %flexColumn;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 261px;
+    height: 100vh;
+    min-height: 700px;
+    background: $asideBack;
+    justify-content: space-between;
+    padding: 57.2px 0 30px 0;
+}
+.logo{
+    @extend %baseTransition;
+    display: block;
+    text-align: right;
+    &:hover{
+        opacity: .6;
+    }
+    &_mob{
+        @extend %baseFlex;
+    }
+    &__img{
+        max-width: 195.51px;
+        margin-right: -1px;
+        &_mob{
+            width: 61.13px;
+        }
+    }
+}
+.menu{
+    @extend %nullList;
+    &__wrap{
+        @extend %absolutePos;
+        top: 50%;
+        transform: translateY(-65%);
+    }
+    &_left{
+        padding-left: 31.46%;
+    }
+    &__item{
+        margin:29.5px 0;
+    }
+    &__link{
+        @extend %nullLink;
+        color: $menuLink;
+        position: relative;
+        transition: .4s;
+        &::before{
+            @extend %menuLine;
+            width: 0;
+        }
+        &:hover{
+            color: $socialBackHover;
+        }
+        &:hover::before{
+            width: 90px;
+        }
+        &_active{
+            &::before{
+                @extend %menuLine;
+                width: 90px;
+            }
+        }
+    }
+}
+.social{
+    text-align: right;
+    &_right{
+        padding-right: 22px;
+    }
+    &__wrap{
+        &_mob{
+            align-self: center;
+            margin-bottom: 53.4px;
+        }
+    }
+    &__item{
+        display: inline-block;
+        margin: 0 7.5px;
+    }
+    &__link{
+        @extend %baseTransition;
+        @extend %nullLink;
+        display: block;
+        width: 25.76px;
+        height: 25.76px;
+        background-color: $socialBack;
+        border-radius: 50%;
+        
+        &:hover{
+            background-color: $socialBackHover;
+        }
+    }
+}

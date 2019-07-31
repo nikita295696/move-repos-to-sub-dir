@@ -1,0 +1,9 @@
+body:not(.user_is_admin) fieldset#edit-per-role .content_access-div:not(:first-child) {
+  display: none;
+}
+body:not(.user_is_admin) div#edit-per-role--description {
+  display: none;
+}
+body:not(.user_is_admin) fieldset#edit-acl {
+  display: none;
+}

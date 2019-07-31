@@ -1,0 +1,48 @@
+{
+  "name": "proxy-local-assets",
+  "version": "0.0.1",
+  "description": "BrowserSync-based Gulpfile to inject local development assets into a remote site",
+  "main": "index.js",
+  "repository": "https://github.com/sbarre/proxy-local-assets.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "proxy",
+    "browsersync",
+    "css",
+    "sass"
+  ],
+  "author": "Sebastien Barre <sbarre@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "base64id": "^1.0.0",
+    "browser-sync": "^2.17.5",
+    "del": "^2.2.2",
+    "es6-promise@^4.1.1", 
+    "engine.io": "^3.3.0",
+    "glob": "^7.1.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-rename@~1.1.0", 
+    "gulp-include": "^2.3.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-less": "^3.5.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-purge-sourcemaps": "^1.0.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sass": "^2.3.2",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "run-sequence": "^1.2.2",
+    "source-map": "^0.7.3",
+    "streamqueue": "^1.1.2"
+  }
+}

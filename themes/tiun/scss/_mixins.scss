@@ -1,0 +1,96 @@
+// миксины и сниппеты
+// симуляция бутстрапа для overrid'а, когда нет возможности добавить его классы
+@mixin col-md{
+  position: relative;
+  min-height: 1px;
+  float: left;
+}
+// неродные для бутстрапа стили выравнивания
+// центровка рядов и колонок при разных ширинах
+@mixin col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;	// reset the text-align
+  margin-right: -4px;	// inline-block space fix
+}
+@mixin clearfix{
+  &:before{
+    display: table;
+    content: '';
+    clear: both;
+  }
+  &:after{
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+@function em($target, $context: 18) {
+  @return ($target / $context) * 1em;
+}
+@mixin triangle($width: 20px, $height: 20px, $color: red, $dir: 'b') {
+  $border-width: 0;
+  $border-color: transparent;
+
+  // Top
+  @if $dir == 't' {
+    $border-width: 0 $width/2 $height $width/2;
+    $border-color: transparent transparent $color transparent;
+  }
+
+  // Right
+  @if $dir == 'r' {
+    $border-width: $height/2 0 $height/2 $width;
+    $border-color: transparent transparent transparent $color;
+  }
+
+  // Bottom
+  @if $dir == 'b' {
+    $border-width: $height $width/2 0 $width/2;
+    $border-color: $color transparent transparent transparent;
+  }
+
+  // Left
+  @if $dir == 'l' {
+    $border-width: $height/2 $width $height/2 0;
+    $border-color: transparent $color transparent transparent;
+  }
+
+  // Top Right
+  @if $dir == 'tr' {
+    $border-width: 0 $width $height 0;
+    $border-color: transparent $color transparent transparent;
+  }
+
+  // Bottom Right
+  @if $dir == 'br' {
+    $border-width: 0 0 $height $width;
+    $border-color: transparent transparent $color transparent;
+  }
+
+  // Top Left
+  @if $dir == 'tl' {
+    $border-width: $height $width 0 0;
+    $border-color: $color transparent transparent transparent;
+  }
+
+  // Bottom Left
+  @if $dir == 'bl' {
+    $border-width: $height 0 0 $width;
+    $border-color: transparent transparent transparent $color;
+  }
+
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: $border-width;
+  border-color: $border-color;
+}
+@mixin hover-transition{ // фон и бордюр
+  $hover_trans: background-color .2s .01s ease-out, border-color .1s .01s ease-out;
+  transition: $hover_trans;
+}
+
+@function em($target, $context: 18) {
+  @return ($target / $context) * 1em;
+}

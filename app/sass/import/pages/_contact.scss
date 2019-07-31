@@ -1,0 +1,144 @@
+.contacts{
+    @extend %baseFlex;
+    @extend %flexColumn;
+    justify-content: flex-end;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    &__input{
+        display: block;
+        background: #fff;
+        font-size: (16em / 18);
+        color: #7a7a7a;
+        font-weight: 300;
+        padding: 4.48% 28px;
+        width:100%;
+        margin: 0 0 30px;
+    }
+    &__textarea{
+        height: 210px;
+        resize: none;   
+    }
+    &__submit{
+        background: transparent;
+        font-size: (16em / 18);
+        color: #fff;
+        cursor: pointer;
+        transition: .8s;
+        text-transform: lowercase;
+        letter-spacing: 2px;
+        letter-spacing: 8.5px;
+        &:hover{
+            opacity: .7;
+        }
+    }
+    &__text-wrap{
+        visibility: hidden;
+        @extend %baseFlex;
+        @extend %flexColumn;
+        max-width: 281px;
+    }
+    &__text{
+        text-decoration: none;
+        color: #fff;
+        font-size: (18em / 18);
+        transition: .4s;
+        &:hover{
+            opacity: .6;
+        }
+        &_tel{
+            font-size: (30em / 18);
+            margin-bottom: 20px;
+        }
+        &_mail{
+            font-size: (20em / 18);
+            margin-top: 10px;
+        }
+        &_place{
+            margin-top: 50px;
+            &:hover{
+                opacity: 1;
+            }
+        }
+        &_maps{
+            @extend %basePos;
+            text-decoration: underline;
+            text-transform: uppercase;
+            margin-top: 30px;
+            &::before{
+                content:"";
+                @extend %absolutePos;
+                position: absolute;
+                left: -38px;
+                bottom: 3px;
+                display: block;
+                width: 21px;
+                height: 37px;
+                @include backImg('img/svg/mapa.svg',cover,initial);
+            }
+        }
+    }
+    &__form-wrap{
+        visibility: hidden;
+        @extend %absolutePos;
+        top:-37px;
+        right: 8.438%;
+        width: 45.15%;
+        height: 129.5%;
+        min-height: 555px;
+        background-color: $backForm;
+        padding: 5.61% 8.32% 3.68% 4.54%;
+        box-shadow: -3px 3px 20px 0px rgba(0, 0, 0, 0.65);
+        overflow: hidden;
+    }
+    &__form{   
+        max-width: 536px;
+        min-width: 200px;
+    }
+}
+.contacts-wrap{
+    visibility: hidden;
+    @extend %basePos;
+    @extend %baseFlex;
+    @extend %alignCenter;
+    padding: 0 0 0 9.34%;
+    width: 100%;
+    min-height: 44.26%;
+    background:$baseBack;
+}
+.contacts-map{
+    visibility: hidden;
+    width: 100%;
+    height: 31.94%;
+    min-height: 232px;
+}
+.contact-form{
+    height: calc(100vh - 120px);
+}
+.con-form{
+    &__text-wrap{
+        text-align: center;
+        padding: 15px 13.9% 15px;
+    }
+    &__text{
+        font-size: 16px;
+        line-height: 25px;
+    }
+    &__inputs{
+        border-bottom: 2px solid #424242;
+        padding: 13px 13px 13px 0;
+        &_textarea{
+            height: 125px !important;
+        }
+    }
+    &__submit{
+        display: block;
+        margin: 0 auto;
+        color: #424242;
+    }
+}
+.con-form-wrap{
+    max-width: 309px;
+    margin: 0 auto;
+}

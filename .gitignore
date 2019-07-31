@@ -1,0 +1,40 @@
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+sites/*/services*.yml
+
+# Ignore paths that contain user-generated content
+sites/*/files
+sites/*/private
+d8_sync/
+themes/tiun/img/*
+
+# Ignore SimpleTest multi-site environment
+sites/simpletest
+
+/.idea/*
+/tmp/*
+# Ignore paths that contain user-generated content
+/cache/*
+/venv/*
+/backUp/*
+/.bash_history
+/.viminfo
+
+### NetBeans ###
+nbproject/private/
+nbbuild/
+nbdist/
+nbactions.xml
+.nb-gradle/
+/robots.txt
+
+node_modules
+npm-debug.log
+themes/tiun/css/ckeditor.css
+/fabric_settings.json
+*.py[co]
+/logs/*
+/site_on_service.lock
+/vendor/composer/installed.json
+!.gitkeep
+!.htaccess

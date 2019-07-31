@@ -1,0 +1,8 @@
+global-styling:
+  version: VERSION
+  css:
+    base:
+      admini.css: {}
+scripts:
+  js:
+    main.js: {}

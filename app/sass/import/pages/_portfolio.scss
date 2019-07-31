@@ -1,0 +1,122 @@
+.portfolio{
+    @extend %basePos;
+    overflow: hidden;
+    &__top-back{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: calc(100% - 261px);
+        height: 212px;
+        background: linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,0));
+        z-index:101;
+    }
+}
+.port-wrap{
+    @extend %baseFlex;
+    @extend %flexColumn;
+    padding-top: 8.5vw;
+}
+.portpic{
+    &__wrap{  
+        transition: .8s;
+        @extend %basePos;
+        @extend %baseFlex;
+        &_left{
+            justify-content: flex-start;
+            padding-bottom: 105.5px;
+            padding-left:9.343%;
+        }
+        &_left-duo{
+            justify-content: flex-start;
+            padding-left:9.343%;
+            padding-bottom: 115px;  
+        }
+        &_right{
+            justify-content: flex-end;
+            padding-bottom: 122.5px;
+            padding-right:20.37%;
+            
+        }
+        &_right-duo{
+            justify-content: flex-end;
+            padding-right:12.12%;
+            padding-bottom: 105.5px;
+        }
+    }
+    &__block{
+        @extend %nullLink;
+        @extend %basePos;
+        display: inline-block;
+        transition: 1s;
+        visibility: hidden;
+        will-change: transform;
+        &::after{
+            content: "";
+            @extend %fullAbsolute;
+            // background: rgba(0,0,0,.3);
+            background: radial-gradient(circle, rgba(0,0,0,0) 25%, rgba(0,0,0,0.4));
+            opacity: 0;
+            transition: .8s ease-in-out;
+        }
+        &:hover::after{
+            opacity: 1;
+
+        }
+        &_left{
+            max-width: 813px;
+        }
+        &_right{
+            max-width: 615px;
+        }
+    }
+    &__img{
+        transition: .8s;
+        &_left,
+        &_right{
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    &__line{
+        @extend %absolutePos;
+        height: 1px;
+        background-color: #000;
+        opacity: 0;
+        transition: .8s ease-in;
+        &_show{
+            opacity:1;
+        }
+        &_left{
+            top: 21.06%;
+            right: -17.24%;
+            width: 32%;
+        }
+        &_right{
+            top: 21.06%;
+            left: -17.24%;
+            width:64.72%;
+        }
+    }
+    &__name{
+        width: 200px;
+        display: table;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 200px;
+        color: $projectName;
+        text-transform: lowercase;
+        &_left{
+            left: calc(100% + 10px); 
+        }
+        &_right{
+            text-align: right;
+            right:calc(100% + 10px); 
+        }
+    }
+}
+.active-transf{
+    transform:scale(.7);
+    opacity: .8;
+}

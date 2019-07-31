@@ -1,0 +1,468 @@
+<?php
+
+/**
+ * @file
+ * Module file for zina
+ */
+
+use Drupal\Component\Utility\UrlHelper;
+
+/**
+ * Implements hook_page_attachments()
+ *
+ * @see template_preprocess_maintenance_page()
+ * @see \Drupal\Core\EventSubscriber\ActiveLinkResponseFilter
+ * @see core\modules\system\system.module > system_page_attachments()
+ */
+function zina_page_attachments(array &$page) {
+  // Ensure the same CSS is loaded in template_preprocess_maintenance_page()
+  $page['#attached']['library'][] = 'system/base';
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $page['#attached']['library'][] = 'system/admin';
+  }
+
+  // Attach libraries used by this theme
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  foreach ($active_theme->getLibraries() as $library) {
+    $page['#attached']['library'][] = $library;
+  }
+
+  // Attach favicon
+  if (theme_get_setting('features.favicon')) {
+    $favicon = theme_get_setting('favicon.url');
+    $type = theme_get_setting('favicon.mimetype');
+    $page['#attached']['html_head_link'][][] = array(
+      'rel' => 'shortcut icon',
+      'href' => UrlHelper::stripDangerousProtocols($favicon),
+      'type' => $type,
+    );
+  }
+
+  // Get the major Drupal version.
+  list($version, ) = explode('.', \Drupal::VERSION);
+
+  // Attach default meta tags.
+  $meta_default = array(
+    // Make sure the Content-Type comes first because the IE browser may be
+    // vulnerable to XSS via encoding attacks from any content that comes
+    // before this META tag, such as a TITLE tag.
+    'system_meta_content_type' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'charset' => 'utf-8',
+      ),
+      // Security: This always has to be output first.
+      '#weight' => -1000,
+    ),
+    // Show Drupal and the major version number in the META GENERATOR tag.
+    'system_meta_generator' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'Generator',
+        'content' => 'Drupal ' . $version . ' (https://www.drupal.org)',
+      ),
+    ),
+    // Attach default mobile meta tags for responsive design.
+    'MobileOptimized' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'MobileOptimized',
+        'content' => 'width',
+      ),
+    ),
+    'HandheldFriendly' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'HandheldFriendly',
+        'content' => 'true',
+      ),
+    ),
+    'viewport' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'viewport',
+        'content' => 'width=device-width, initial-scale=1.0, user-scalable=no',
+      ),
+    ),
+    'og_image' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'property' => 'og:image',
+        'content' => '/themes/tiun/img/logo.png',
+      ),
+    ),
+  );
+  foreach ($meta_default as $key => $value) {
+    $page['#attached']['html_head'][] = [$value, $key];
+  }
+
+  // Handle setting the "active" class on links by:
+  // - loading the active-link library if the current user is authenticated;
+  // - applying a response filter if the current user is anonymous.
+  // @see \Drupal\Core\Link
+  // @see \Drupal\Core\Utility\LinkGenerator::generate()
+  // @see template_preprocess_links()
+  // @see \Drupal\Core\EventSubscriber\ActiveLinkResponseFilter
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    $page['#attached']['library'][] = 'core/drupal.active-link';
+  }
+}
+
+// Implements hook_preprocess_views_view_field()
+function zina_preprocess_views_view_field(&$vars){
+    // for views_php
+    if(isset($vars['field']->realField) && $vars['field']->realField == 'php'){
+        $vars['var_is_safe'] = 1;
+    }
+}
+/**
+ * Implements hook_preprocess_views_view_fields()
+ */
+function zina_preprocess_views_view_fields(&$vars){
+    // we let views-view-fields.html.twig to get {{ views_name }} and {{ views_display_name }}
+    $view = $vars['view'];
+    $vars['views_name'] = $view->storage->id();
+    $vars['views_display_name'] = $view->current_display;
+}
+
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * Implements hook_preprocess_HOOK()
+ */
+function zina_preprocess_html(&$vars) {
+    // Add to the body class
+    // .not-front
+    $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+    if(!$is_front_page){
+        $vars['attributes']['class'][] = 'not-front';
+    }
+    // .user_is_admin
+    $user = \Drupal::currentUser()->getRoles();
+    if(in_array("administrator", $user)) {
+        $vars['attributes']['class'][] = 'user_is_admin';
+    }
+    // .path-views on views pages
+    $view_id = \Drupal::routeMatch()->getParameter('view_id');
+    if($view_id) {
+        $vars['attributes']['class'][] = 'path-views';
+        $vars['attributes']['class'][] = $view_id . '_view';
+    }
+    // .node-xx on node pages
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if($node) {
+        $vars['attributes']['class'][] = 'node-' . $node->id();
+    }
+}
+
+
+/** 
+ * For Image field:
+ * 
+ * Set alt and title if both empty to entity title
+ *
+ * Set alt to title if alt empty
+ *
+ * Set title to alt if title empty
+ *
+ * @param $variables
+ * @see zina_preprocess_image_formatter
+ * @see zina_preprocess_colorbox_formatter
+ */
+function zina_set_image_attributes(&$variables) {
+  /**
+   *
+   * @var $item \Drupal\Image\Plugin\Field\FieldType\ImageItem
+   */
+  $item = $variables['item'];
+  $entity = $item->getEntity();
+  if(empty($variables['image']['#alt']) && empty($variables['image']['#title'])) {
+    if(method_exists($entity, 'getTitle')) {
+      $entity_title = $item->getEntity()->getTitle();
+      $variables['image']['#alt'] = $variables['image']['#title'] = $entity_title;
+    }
+  } elseif (empty($variables['image']['#title'])) {
+    $variables['image']['#title'] = $variables['image']['#alt'];
+  } elseif(empty($variables['image']['#alt'])) {
+    $variables['image']['#alt'] = $variables['image']['#title'];
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK()
+ */
+function zina_preprocess_image_formatter(&$variables) {
+  zina_set_image_attributes($variables);
+}
+/**
+ * Implements hook_preprocess_HOOK()
+ */
+function zina_preprocess_colorbox_formatter(&$variables) {
+  zina_set_image_attributes($variables);
+}
+
+
+/**
+* 
+*/
+function zina_preprocess_block(&$vars) {
+
+    // даём блоку знать о регионе, в котором он
+    // Add a region variable to a block
+    if (isset($vars["elements"]["#id"])) {
+        $block_id = $vars["elements"]["#id"];
+        $block = \Drupal\block\Entity\Block::load($block_id);
+        if ($block) {
+            $vars["region"] = $block->getRegion();
+        }
+    }
+
+    // let block know if user is logged in
+    $account = \Drupal::currentUser();
+    if ($account->id()) {
+        $vars["user_in"] = 1;
+    }else {
+        $vars["user_in"] = 0;
+    }
+    
+}
+
+
+/**
+ * Implements hook_preprocess_page()
+ * даём page.html.twig знать об url
+ */
+use Drupal\taxonomy\Entity\Term;
+function zina_preprocess_page(&$vars) {
+    $vars['route_name'] = \Drupal::service('path.current')->getPath();
+
+    // for terms:
+    if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' 
+        && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
+        $term = Term::load($tid);
+        $vars['term_vocabular'] = $term->bundle();
+        // $term->getVocabularyId();
+        // $term->getName();
+    }
+}
+
+
+/**
+ * Implements hook_toolbar_alter()
+ * @see admin_toolbar_toolbar_alter()
+ */
+function zina_toolbar_alter(&$items) {
+    // спецменю для editor внутри нативного toolbar`а – editor-menu
+    $items['administration']['tray']['toolbar_administration']['#pre_render'] = ['zina_prerender_toolbar_administration_tray'];
+    
+    // css/zina.toolbar.css
+    $roles = Drupal::currentUser()->getRoles();
+    if (in_array('authenticated', $roles) && !in_array('administrator', $roles)){
+        $items['administration']['#attached']['library'][] = 'zina/mytoolbar.tree'; // see zina.libraries.yml
+    }
+}
+/**
+ * Renders the toolbar's administration tray
+ * Override admin_toolbar to use 'editor-menu' as source in the toolbar
+ *
+ * @param array $element
+ *   A renderable array
+ *
+ * @return array
+ *   The updated renderable array
+ *
+ * @see admin_toolbar_prerender_toolbar_administration_tray()
+ * @see toolbar_prerender_toolbar_administration_tray()
+ */
+use Drupal\Core\Menu\MenuTreeParameters;
+function zina_prerender_toolbar_administration_tray(array $element) {
+    $menu_tree = \Drupal::service('toolbar.menu_tree');
+    $parameters = new MenuTreeParameters();
+
+    $roles = Drupal::currentUser()->getRoles();
+    $user_roles = array('editor', 'assoc_member', 'authenticated');
+    // if (in_array('editor', $roles) 
+    if (count(array_intersect($roles, $user_roles)) > 0 // at least one of $user_roles is in $roles
+        && !in_array('administrator', $roles)) {
+        $tree = $menu_tree->load('editor-menu', $parameters);
+    }else {
+        $parameters->setRoot('system.admin')->excludeRoot()->setMaxDepth(4)->onlyEnabledLinks();
+        $tree = $menu_tree->load(NULL, $parameters);
+    }
+
+    $manipulators = [
+        ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+        ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+        ['callable' => 'toolbar_tools_menu_navigation_links'],
+    ];
+    $tree = $menu_tree->transform($tree, $manipulators);
+    $element['administration_menu'] = $menu_tree->build($tree);
+
+    return $element;
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK()
+ */
+function zina_preprocess_page_title(&$vars) {
+    // даём page-title.html.twig
+    // знать об url
+    $vars['route_name'] = \Drupal::service('path.current')->getPath();
+    
+    // знать о вьюс
+    $view_id = \Drupal::routeMatch()->getParameter('view_id');
+    if ($view_id){        
+        $view = \Drupal\views\Views::getView($view_id);
+        $vars['views_name'] = $view->storage->id();
+        $vars['views_display_name'] = $view->current_display;
+    }
+}
+
+/**
+ * Implements hook_preprocess_container()
+ */
+function zina_preprocess_container(&$vars) {
+    // we add element_name to global element wrapper
+    if (isset($vars['element']['#name'])) {
+        $vars['element_name'] = $vars['element']['#name'];
+    }
+}
+
+/**
+ * Implements hook_preprocess_views_view()
+ */
+function zina_preprocess_views_view(&$vars){
+    // we let views-view.html.twig
+    
+    // to get {{ views_name }} and {{ views_display_name }}
+    $view = $vars['view'];
+    $vars['views_name'] = $view->storage->id();
+    $vars['views_display_name'] = $view->current_display;
+    
+    // знать об url
+    $vars['route_name'] = \Drupal::service('path.current')->getPath();
+    
+    // знать об имени термина, если это стр. термина
+    if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+        $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+        $term = Term::load($tid);
+        $vars['term_name'] = $term->getName();
+    }
+}
+/**
+ * Implements hook_preprocess_views_view_unformatted()
+ */
+function zina_preprocess_views_view_unformatted(&$vars){
+    // we let views-view-unformatted.html.twig to get {{ views_name }} and {{ views_display_name }}
+    $view = $vars['view'];
+    $vars['views_name'] = $view->storage->id();
+    $vars['views_display_name'] = $view->current_display;
+    // и даём знать об url
+    $vars['route_name'] = \Drupal::service('path.current')->getPath();
+}
+
+use Drupal\views\Views;
+function zina_preprocess_node(&$vars) {  // for node.html.twig
+    $node = $vars['node'];
+    $nid =  $vars['node']->id();
+    
+    // let node.html.twig know if user is logged in
+    $account = \Drupal::currentUser();
+    if ($account->id()) {
+        $vars["user_in"] = 1;
+    }else {
+        $vars["user_in"] = 0;
+    }
+}
+
+
+// hook_file_link
+function zina_preprocess_file_link(&$vars){
+
+    // let twig get nid on node pages
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if($node) {
+        $vars['node_id'] = $node->id();
+    }
+    
+    // даём file-link.html.twig
+    // знать об url
+    $vars['route_name'] = \Drupal::service('path.current')->getPath();
+}
+
+/**
+ * Implements hook_theme_suggestions_form_alter()
+ */
+function zina_theme_suggestions_form_alter(&$suggestions, $vars) {
+  // we add form--user-login-form.html.twig
+  if ($vars['element']['#form_id'] == 'user_login_form') {
+    $suggestions[] = 'form__user_login_form';
+  }
+  // we add form--user-register-form.html.twig  
+  if ($vars['element']['#form_id'] == 'user_register_form') {
+    $suggestions[] = 'form__user_register_form';
+  }
+}
+
+
+/**
+ * Implements hook_form_alter()
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function zina_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form' ) {
+    // change submit text
+    $form['actions']['submit'] = ['#type' => 'submit', '#value' => t('Enter')];
+    // add css class to submit
+    $form['actions']['submit']['#attributes']['class'][] = 'submit-user_login';
+  }
+  if ($form_id == 'user_register_form' ) {
+    // change submit text
+    // $form['actions']['submit'] = ['#type' => 'submit', '#value' => t('register')]; // prevents to register
+    $form['actions']['submit']['#value'] = t('register');
+    // add css class to submit
+    $form['actions']['submit']['#attributes']['class'][] = 'submit-user_register';
+    // custom checkbox
+    $form['terms_of_use'] = array(
+        '#type' => 'checkbox',
+        '#title' => t("I agree with the website's terms and conditions."),
+        '#required' => TRUE,
+        '#weight' => 25,
+    );
+    $form['field_pib']['#access'] = TRUE; // text field w/o this doesn't appear
+    $form['field_phone']['#access'] = TRUE; // text field w/o this doesn't appear
+    // $form['field_phone']['#weight'] = 25;
+    $form['field_phone']['#weight'] = 25;
+  }
+
+}
+
+
+/**
+ * Implements hook_preprocess_menu()
+ */
+function zina_preprocess_menu__main(&$vars) {
+    if (isset($vars['menu_block_configuration']) && 'Main navigation' == $vars['menu_block_configuration']['label']){
+        // в клоне главного меню в подвале
+        // удаляем классы, к которым цепляется хавер-меню
+        $vars['main_menu_hover'] = 1;
+    }
+}
+
+// CKEditor with well-formatted html source code
+function zina_editor_js_settings_alter(array &$settings) {
+  foreach (array_keys($settings['editor']['formats']) as $text_format_id) {
+    if ($settings['editor']['formats'][$text_format_id]['editor'] === 'ckeditor') {          
+        $settings['editor']['formats'][$text_format_id]['editorSettings']['customConfig'] = base_path() . drupal_get_path('module', 'zina') . '/ckeditor_config.js';
+    }
+  }
+}
+
+// Implements hook_preprocess_breadcrumb()
+function zina_preprocess_breadcrumb(&$vars){
+    // даём breadcrumb.html.twig
+    // знать об url
+    $vars['route_name'] = \Drupal::service('path.current')->getPath();
+}

@@ -1,0 +1,15 @@
+// Admini Theme overrides file. All selectors must start with ".admini"
+//.form-disabled{display: none} иначе скрывает важные контролы, напр., Атрибуты в бандле вариаций товара
+body:not(.user_is_admin){
+    .page-node-type-publication{} // вкладка "Контроль доступа" у нод бандла Publications
+    fieldset#edit-per-role{
+        .fieldset-wrapper{}
+            .content_access-div{
+                &:not(:first-child){display:none}    // скрываем все кроме 1-ой группы "View any publication content"
+            }
+    }
+        div#edit-per-role--description{
+            display:none
+        }
+    fieldset#edit-acl{display:none} // скрываем добавление конкретного юзера
+}

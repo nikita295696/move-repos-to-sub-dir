@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+	include includes/_head
+	body 
+		.wrapper
+			.main-content
+				include includes/_header
+				include includes/_main
+				include includes/_aside
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js")
+		script(src="/js/services.js")
+		script(src="/js/menu.js")
+		script.
+			new WOW({mobile:false}).init();

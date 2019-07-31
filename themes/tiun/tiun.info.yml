@@ -1,0 +1,26 @@
+core: 8.x
+type: theme
+base theme: bootstrap
+
+name: 'Tiun Sub-Theme (sass)'
+description: 'Uses the Bootstrap framework Sass source files and must be compiled'
+package: 'Bootstrap'
+
+regions:
+  header: 'Header in header'
+  page_top: 'Page top'
+  topbar: 'Top Bar'
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  sidebar_first: 'Primary sidebar'
+  content: 'Content'
+  sidebar_second: 'Secondary sidebar'
+  full_width: 'Full width'
+  pre_footer: 'Pre-footer'
+  footer: 'Footer'
+
+libraries:
+  - 'tiun/global-styling'
+  - 'tiun/bootstrap-scripts'

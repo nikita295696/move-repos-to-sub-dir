@@ -1,0 +1,15 @@
+<div class="services main-wrap" id="services">
+  <div class="serv" id="serv-menu">
+      <a class="serv__item wow fadeInUp" href="#" *ngFor="let service of services" data-wow-delay=".7s" (click)="selectService(service.getId())">
+        <div class="serv__icon-wrap">
+          <div class="serv__icon serv__icon_{{service.getId()}}" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(service.getBaseImage())"></div>
+        </div>
+        <div class="serv__text-wrap">
+          <p class="serv__text" [innerHTML]="service.getTitle()"></p>
+        </div>
+      </a>
+  </div>
+    <div class="service-wrap" id="oneService" style="display: none">
+
+    </div>
+</div>

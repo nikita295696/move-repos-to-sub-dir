@@ -1,0 +1,71 @@
+.footer{
+    &__top{
+        @extend %baseFlex;
+        @extend %flexFullCenter;
+        width: 100%;
+        height: 272px;
+        background: $footerTop;
+    }
+    &__top-wrap{
+        display: flex;
+    }
+    &__bottom{
+        @extend %baseFlex;
+        @extend %flexFullCenter;
+        width: 100%;
+        height: 117px;
+        background: $footerBottom;
+    }
+    &__text{
+        color:$footerText;
+    }
+    &__vr{
+        width: 1px;
+        height: 78px;
+        background: #000;
+        margin:0 102.5px 0 60.5px;
+    }
+}
+
+.address{
+    @extend %baseFlex;
+    &__text-wrap{
+        @extend %basePos;
+        //max-width: 216px;
+        line-height: 1.49em;
+        &::before{
+            content:"";
+            @extend %absolutePos;
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            display: block;
+            width: 21px;
+            height: 37px;
+            @include backImg('img/svg/mapa.svg',cover,initial);
+        }
+    }
+    &__img{
+        width: 20.16px;
+        margin: 5px 17.1px 0;
+    }
+}
+
+.contact{
+    @extend %baseFlex;
+    @extend %flexColumn;
+    justify-content: space-between;
+    &__tel{
+        font-size: (28em / 18);
+    }
+    &__link{
+        @extend %nullLink;
+        display: block;
+        color: $footerText;
+    }
+}
+
+.fbot-text{
+    color: $footerTop;
+    font-size: (12em / 18);
+}

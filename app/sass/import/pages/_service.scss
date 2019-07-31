@@ -1,0 +1,92 @@
+.service-wrap{
+    @extend %basePos;
+    @extend %baseFlex;
+    width: 100%;
+    padding-left: 9.343%;
+}
+.service{
+    @extend %baseFlex;
+    align-items: center;
+    @extend %basePos;
+    height: 100vh;
+    overflow: hidden;
+    &_text-padding{
+        padding: 0 0 0 38px;
+    }
+    &_textBack{
+        height: 40px;
+    }
+    &_topArrow{
+        margin-top: 35px;
+    }
+    &__left{
+        @extend %basePos;
+        @extend %baseFlex;
+        @extend %flexColumn;
+        @extend %justifyCenter;
+        padding: 70px 0;    
+        max-width: 400px;//test-kao
+    }
+    &__right{
+        @extend %basePos;
+        @extend %baseFlex;
+        @extend %flexColumn;
+        // margin-left: 15px;
+        flex-grow: 1;
+        padding: 30px 30px 0 15px;
+        visibility: hidden;
+    }
+    &__bottom{
+        @extend %absolutePos;
+        bottom: -135px;
+        width: 100%;
+        text-align: center;
+        padding: 25px 30px 0 0;
+    }
+    &__slider-wrap{
+        @extend %basePos;
+    }
+    &__text-wrap{
+        width: 100%;
+        margin-top: 80px;
+    }
+    
+    &__price{
+        @extend %absolutePos;
+        bottom: 0;
+        font-size: (70em / 18);
+        padding-left: 38px;
+    }
+    &__capt-wrap{
+        @extend %fullAbsolute;
+        z-index: 100;
+    }
+    &__caption{
+        padding-top: 10px;
+        font-size: (60em /18);
+        font-weight: 300;
+        color: #fff;
+        text-shadow: 1px 1px 20px #000;
+    }
+    &__letter{
+        @extend %absolutePos;
+        top:0;
+        left: -244px;
+        font-size: 300px;
+        line-height: 193px;
+        color: #000;
+        text-shadow: none;
+    }
+    &__word{
+        padding-left: 30px;
+    }
+}
+.service-slider{
+    @extend %basePos;
+    overflow: hidden;
+    // width: 1060px;
+    width: 100%;
+    min-height: 625px;
+    // margin: 30px 30px 0 0 !important;
+    box-shadow: 30px -30px 0px #c7afad;
+}

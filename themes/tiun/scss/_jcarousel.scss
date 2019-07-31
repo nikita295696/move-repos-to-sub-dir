@@ -1,0 +1,294 @@
+.jcar-clip{
+  text-align: center;
+  margin: 0 auto;
+}
+  .jcar-wrap {
+    //margin: 20px auto;
+    position: relative;
+  }
+    .jcarousel1, .jcarousel2 {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+
+      .jcarousel-list {
+        width: 20000em;
+        position: relative;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+        .jcarousel-item {
+          float: left;
+          //padding: 0 0 5px;
+          //box-sizing: border-box;
+          @media (max-width: 770px) { margin: 0 }
+        }
+    }
+          .jcarousel-fields-wrap{
+            //width: 222px; // as image has
+            display: inline-block;
+            @media (max-width: 767px) {width: 170px}
+          }
+  [class*='jcarousel-control']{
+    width: 38px;
+    height: 76px;
+    background: rgba(26,29,35, 0.8);
+
+    position: absolute;
+      top: 36%;
+    z-index: 1;
+
+    // when 5 items and 4 are visible for carousel to cycle/rotate
+    //@media (max-width: 1090px) { top: 33% }
+    //@media (max-width: 770px) and (min-width: 768px) {top: 40%}
+
+    // when 4 items and 3 are visible for carousel to cycle/rotate
+    @media (max-width: 1100px) { top: 38% }
+    @media (max-width: 770px) and (min-width: 768px) {top: 40%}
+
+    @media (max-width: 770px) {
+      width: 45px;
+      height: 45px;
+    }
+    span{
+      display: inline-block;
+      //background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAQAAADopgGOAAAA40lEQVQ4jY3UySqFARiA4cc8jzdhaUynY0wyJEnck4UkSSmRpISdlCklQxQug/8cV+ESvu9dP+uXuBG3amJWUrUYs7LCfMzGFOZiNq5iNmYTqmZiNuXPdMxmVE3GbFbFeMzmFMZiNq9QjtmCilLMllSNxmxZxXDMVhSGYrbq12DM1vwYiNm6H/0x49y9xgxscOkqR+tduNaUoXXO3GjO0VO3WnL0xJ3WHD32kKVHHnO01qEnbRla48Cz9hzd96IjR/e86szRXW+6cnTHe5Zu+9SdoWz50pOjm7715uiGj8yaoY9/fvkySh33svUAAAAASUVORK5CYII=) no-repeat;
+      //width: 20px; height: 37px;
+      //background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAoCAYAAAAR87HlAAABaUlEQVRIx7WXz0cFURSAX71+KSq1iCQiEVHRIuItWkR/WFq0iGoTpRaJUiRK6SfRIrWORBRRkkjSqr7hXI5nXjN35tzFd83ce+fjztw559xCcW6hYEQbnMCQlbAVruEXziyELXAlwlvoyCtshksR3kFn1J9H2AQXIryHLjeWVdgI5yJ8gG49nlV4JMJH6Cmf4yushwMRPkFv3DwfYR3sifAZ+irN9RHuiPAF+v+bn0ZYA1sifIWBpGeShEXYEOEbDKZZWZJwTYTvMJz2/VcaqIYVEX7AiM8uieusgiUlHPXdy3HCRRF+wliWP65cOC/CLyhljQv6ZlYJx/NEL3cxI8JvmMgbY6NmSoQ/MGmRCaJmOoQ0yPKDfahgWyrI5tfiZcvfVEeoVcuAosXrlqFPizctg7SjFrYt04lOfLuWiU+L9y1TtKMBDi2LCV32HFuWPcEKtGClZLCiN1h5rg8SN5YHCUc7nEZHnj/mzjnaQiU18wAAAABJRU5ErkJggg==) no-repeat;
+      //width: 21px; height: 40px;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAcCAYAAABoMT8aAAABEklEQVRIx2O4+eANAxlYFoj3ArEGOZoVgfgeEP8H4l2kalYH4sdQzWeAWIgUzTpA/Byq+QgQ84PEidVsBMRvoJr3ATE3TI4YzZZA/B6qeRsQcyLLE9JsD8SfoZrXAzEbuhp8mt2B+CtU8zIgZsGmDpdmPyD+CdU8D4iZcVmETTAMiH9BNU8FYkZ83kQXiAPiP1DN3YQ0oxuQDsT/oJqbiE0fMEYBkuYKUlIniKiEagQZkEdq3gARVUgG5JJjAAgXInmhnBwD0AOxkRwD0KOxi9RoxJaQppCakLAl5bmkJmVsmWkpqZkJW3ZeR2p2xlagbCW1QMFWpO0ltUjDVqgeJrVQxVasnya1WMdWsexkoLRqAwBYne3sQl0HJwAAAABJRU5ErkJggg==);
+      width: 16px;
+      height: 28px;
+
+      position: relative;
+      top: 1.35em;
+      @media (max-width: 770px) {background-size: 80%; top: 10px}
+    }
+    &.jcarousel-control-prev{
+      left: 0;
+
+      border-bottom-right-radius: 76px;
+      border-top-right-radius: 76px;
+
+      span{
+        left: -4px;
+        @media (max-width: 770px) { left: -15px }
+        @media (max-width: 620px) { left: -30px }
+      }
+    }
+    &.jcarousel-control-next{
+      right: 0;
+
+      border-bottom-left-radius: 76px;
+      border-top-left-radius: 76px;
+
+      span{
+        left: 6px;
+        transform: rotate(180deg);
+        @media (max-width: 991px) {left: 0}
+        @media (max-width: 770px) {top: 3px; left: 20px}
+        @media (max-width: 620px) {left: 32px }
+      }
+    }
+  }
+  .jcarousel-pagination-wrap{
+    width: 36.8em;
+    @media (max-width: 1199px){width: 39.4em}
+    @media (max-width: 991px) {width: 29em}
+    @media (max-width: 767px) {width: auto}
+  }
+    .jcarousel-pagination{
+      position: absolute;
+      bottom: 7em;
+      @media (max-width: 767px) {bottom: 2em}
+      @media (max-width: 490px) {bottom: 0}
+      a{
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        text-indent: -9999px;
+        border-radius: 6px;
+        border: 1px solid #fefefe;
+        background-clip: padding-box;
+        background-color: #626262;
+        &:not(:last-child){
+          margin: 0 0.5em 0 0;
+        }
+        &.active{
+          background: #fefefe
+        }
+      }
+    }
+
+
+// 1 item per screen
+//  big
+.slider-integre{
+  .jcar-wrap{}
+  .jcarousel-list{}
+    .jcarousel-item{
+      width: 100%;
+    }
+
+  [class*='jcarousel-control']{
+    span{display: none}
+    &:hover{
+      span{
+        display: block;
+      }
+    }
+  }
+  .jcarousel-control-prev{
+    left: 10px;
+  }
+  .jcarousel-control-next{
+    right: 5px;
+  }
+}
+// small
+aside{}
+  .jcar-clip{
+    aside &{
+      width: 100%;
+    }
+  }
+    [class*='jcarousel-control']{
+      aside &{
+        top: 24%;
+      }
+    }
+
+
+// 3 items per screen
+.photogallery-frontp{
+  border: 1px solid #b4b9c1;
+  .jcar-clip{
+    max-width: 986px;
+  }
+    .jcarousel-trio{
+      width: 90%;
+      padding: 1em 0;
+      margin: 0 auto;
+    }
+      .jcarousel-item{}
+        .jcarousel-fields-wrap{
+          display: block;
+          text-align: center;
+          background: transparent;
+          > *{
+            display: inline-block;
+          }
+        }
+          .gal-photo{
+            &:hover{
+              box-shadow: inset 0 0 0 2px $clr_blue;
+            }
+          }
+          .gal-title{
+            padding: 0 1.1em;
+            margin: 0.3em 0 0;
+            a{
+              color: inherit;
+              font-size: em(16);
+              &:hover{
+                color: $clr_blue;
+                text-decoration: none;
+              }
+            }
+          }
+    [class*='jcarousel-control']{
+      top: 32%;
+    }
+}
+
+
+// 4 items per screen
+.slider-quart{
+  .jcar-clip{
+
+    max-width: 1020px; //740px; 764px;
+
+    // when 5 items and 4 are visible for carousel to cycle/rotate
+    //@media (max-width: 1090px){ max-width: 636px}
+    //@media (max-width: 770px) { max-width: 523px}
+    //@media (max-width: 620px) { max-width: 243px}
+
+    // when 4 items and 3 are visible for carousel to cycle/rotate
+    @media (max-width: 1160px){ max-width: 960px}
+    @media (max-width: 1100px){ max-width: 760px}
+    @media (max-width: 840px) { max-width: 523px}
+    @media (max-width: 767px) { max-width: 460px}
+    @media (max-width: 620px) { max-width: 243px}
+  }
+    .jcarousel-fields-wrap{}
+      .jcarousel-item{
+        padding: 0 10px;
+      }
+      img{
+        display: block; // for .jcarousel-fields-wrap to be as height as image
+      }
+    [class$='control-prev']{
+      left: -41px;
+      @media (max-width: 1110px) {left: -33px}
+      @media (max-width: 370px) {left: 12px}
+    }
+    [class$='control-next']{
+      right: -33px;
+
+      // when 5 items and 4 are visible for carousel to cycle/rotate
+      //@media (max-width: 1110px){right: -23px}
+      //@media (max-width: 991px) {right: -31px}
+      //@media (max-width: 370px) {right: 12px}
+
+      // when 4 items and 3 are visible for carousel to cycle/rotate
+      @media (max-width: 1110px){right: -29px}
+      @media (max-width: 991px) {right: -31px}
+      @media (max-width: 370px) {right: 12px}
+
+    }
+}
+  .jcarousel-fields-wrap{
+    position: relative;
+    z-index: 1;
+    //border: 3px solid #0f263d;
+  }
+    .jcarousel-item{
+      img{
+        position: relative; z-index: -1;
+      }
+      &:hover .jcarousel-fields-wrap{
+        //box-shadow: 0 0 8px 9px #005f82;
+        //border: 3px solid #039294;
+      }
+    }
+
+
+// jcarousel pager for nodes
+.jcarousel-pager{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  ul.field-slideshow-pager {
+    width: 20000em !important;
+    position: relative;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+    li {
+      display: block;
+      float: left;
+
+      margin-right: 3px;
+      text-align: center;
+      //padding: 0 0 5px;
+      //box-sizing: border-box;
+      @media (max-width: 770px) { margin: 0 }
+      img{
+        margin: 0 auto;
+      }
+    }
+}
+

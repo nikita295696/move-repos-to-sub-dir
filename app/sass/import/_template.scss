@@ -1,0 +1,100 @@
+%clearfix{
+  &:before{
+    display: table;
+    content: '';
+    clear: both;
+  }
+  &:after{
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+.container {}
+.hide{
+    display: none;
+}
+%menuLine{
+    content:"";
+    @extend %absolutePos;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -104px;
+    display: block;
+    height: 10px;
+    background-color: #000;
+    transition: .6s;
+}
+//base
+%nullLink {
+    text-decoration: none;
+    outline: none; 
+    -moz-outline-style:none;
+}
+
+%nullList {
+    list-style: none;
+}
+
+%nullInputs {
+    outline: none;
+}
+
+%baseFlex {
+    display: flex;
+}
+
+%flexColumn{
+    flex-direction: column;
+} 
+
+%justifyCenter {
+    justify-content: center;
+}
+
+%alignCenter{
+    align-items: center;
+}
+
+
+%flexFullCenter {
+    justify-content: center;
+    align-items: center;
+}
+
+%baseRegular {
+}
+
+%baseBold {
+}
+
+%textCenter {
+    text-align: center;
+}
+
+%basePos{
+    position: relative;
+    z-index: 1;
+}
+
+%absolutePos{
+    position: absolute;
+}
+
+%fullAbsolute{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+%marginCenter{
+    margin: 0 auto;
+}
+
+%baseTransition{
+    transition: .5s ease-out;
+}
+

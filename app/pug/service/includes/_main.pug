@@ -1,0 +1,29 @@
+.service.main-wrap
+    .service-wrap
+        .service__left
+            .service__text-wrap.proj-text.wow.fadeInLeft(data-wow-delay=".5s" data-wow-duration="1.5s")
+                .proj-text__textBack.service_textBack
+                .proj-text__hideScrollService
+                .proj-text__text-wrap.service_text-padding
+                    p.proj-text__text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate itaque ratione pariatur officiis ipsum reprehenderit recusandae voluptates labore maiores, rerum et consequuntur. Tenetur, minus? Tempora distinctio temporibus laborum debitis beatae?
+                    p.proj-text__text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate itaque ratione pariatur officiis ipsum reprehenderit recusandae voluptates labore maiores, rerum et consequuntur. Tenetur, minus? Tempora distinctio temporibus laborum debitis beatae?  
+                    p.proj-text__text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate itaque ratione pariatur officiis ipsum reprehenderit recusandae voluptates labore maiores, rerum et consequuntur. Tenetur, minus? Tempora distinctio temporibus laborum debitis beatae?     
+                    p.proj-text__text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate itaque ratione pariatur officiis ipsum reprehenderit recusandae voluptates labore maiores, rerum et consequuntur. Tenetur, minus? Tempora distinctio temporibus laborum debitis beatae?        
+            p.service__price.wow.zoomIn(data-wow-delay="2s") $1000    
+        .service__right.wow.fadeInRight(data-wow-delay=".5s" data-wow-duration="1.5s")
+            .service__slider-wrap
+                .service-slider#revslider_service(style="display:none;", data-version="5.4.7.4")
+                    ul
+                        li(data-transition="fade", data-slotamount="6", data-hideafterloop="0", data-hideslideonmobile="off",  data-easein="Power2.easeInOut", data-easeout="Power2.easeInOut", data-masterspeed="1000", data-rotate="0", data-saveperformance="off", data-title="Slide")
+                            img(src="/img/slide2.jpg", alt="gordinsky").slides__img
+                        li(data-transition="fade", data-slotamount="6", data-hideafterloop="0", data-hideslideonmobile="off",  data-easein="Power2.easeInOut", data-easeout="Power2.easeInOut", data-masterspeed="1000", data-rotate="0", data-saveperformance="off", data-title="Slide")
+                            img(src="/img/slide1.jpg", alt="gordinsky").slides__img   
+                .service__capt-wrap.wow.fadeIn(data-wow-delay="2s" data-wow-duration="2s")
+                    h1.service__caption <span class="service__letter">Д</span>изайн <br> <span class="service__word">проект</span>
+            .service__bottom
+                .proj-info__name-wrap
+                    p.proj-info__name подпись к фото или его название, если необходимо
+                .arrows.service_topArrow
+                    a(href="#").arrows__left#prevSlideService
+                    .slide-status-numbers.arrows__numb
+                    a(href="#").arrows__right#nextSlideService

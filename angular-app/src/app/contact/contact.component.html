@@ -1,0 +1,32 @@
+<div class="contacts main-wrap" id="services">
+  <div class="contacts-wrap wow fadeIn" data-wow-delay=".5s">
+    <div class="contacts__text-wrap wow fadeInLeft" data-wow-delay="1.5s" data-wow-duration="1.5s"><a class="contacts__text contacts__text_tel" href="tel:0967777777">096 777 77 77</a><a class="contacts__text contacts__text_tel" href="tel:0967777777">096 777 77 77</a><a class="contacts__text contacts__text_mail" href="mailto:info@gordinsky.com.ua">info@gordinsky.com.ua</a>
+      <p class="contacts__text contacts__text_place">Днепр, проспект Гагарина, 74 офіс 513</p><a class="contacts__text contacts__text_maps" target="_blank" href="https://maps.google.com/maps?ll=48.429543,35.039111&z=16&t=m&hl=ru&gl=UA&mapclient=embed&q=%D0%BF%D1%80%D0%BE%D1%81%D0%BF.%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD%D0%B0%2C%2074%20%D0%94%D0%BD%D0%B8%D0%BF%D1%80%D0%BE%20%D0%94%D0%BD%D0%B5%D0%BF%D1%80%D0%BE%D0%BF%D0%B5%D1%82%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%2049000">Посмотреть на карте</a>
+    </div>
+    <div class="contacts__form-wrap wow fadeInRight" data-wow-delay="1.5s" data-wow-duration="1.5s">
+      <form class="contacts__form" name="contactSend" id="contacForm1" (ngSubmit)="create(); contactForm.reset()" #contactForm='ngForm'>
+        <input class="contacts__input" type="text" placeholder="Имя" name="name" [(ngModel)]="contact.name" required #inputName="ngModel">
+        <input class="contacts__input" type="tel" placeholder="номер телефона" name="phone" [(ngModel)]="contact.phone" pattern="^\+38( )?0((-| )?\d{2}(-| )?\d{3}(-| )?\d{2}(-| )?\d{2}|(-| )?\d{2}(-| )?\d{2}(-| )?\d{2}(-| )?\d{3})$" required #inputPhone="ngModel">
+        <textarea class="contacts__input contacts__textarea" name="comment" placeholder="коментарий" [(ngModel)]="contact.comment" required #inputComment="ngModel"></textarea>
+
+        <div class="alert alert-danger">
+          <p [hidden]="inputName.valid || inputName.untouched">
+            Поле "Имя" должно быть обязательным
+          </p>
+          <p [hidden]="inputPhone.valid || inputPhone.untouched">
+            Некоректно введенный телефон
+          </p>
+          <p [hidden]="inputComment.valid || inputComment.untouched">
+            Поле "Комментарий" должно быть обязательным
+          </p>
+        </div>
+
+        <input class="contacts__submit" type="submit" [disabled]="contactForm.form.invalid" value="отправить">
+
+      </form>
+    </div>
+  </div>
+  <div class="contacts-map wow fadeIn" data-wow-delay=".5s">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2647.406209825534!2d35.03692211609892!3d48.42954307924773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dbfcb356ef2c8d%3A0xcd57ecf771f55c32!2z0L_RgNC-0YHQvy4g0JPQsNCz0LDRgNC40L3QsCwgNzQsINCU0L3QuNC_0YDQviwg0JTQvdC10L_RgNC-0L_QtdGC0YDQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDQ5MDAw!5e0!3m2!1sru!2sua!4v1558614134615!5m2!1sru!2sua" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+</div>

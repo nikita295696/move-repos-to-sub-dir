@@ -1,0 +1,37 @@
+// fonts
+//
+// PTSans
+//@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i');
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../fonts/PTS55F-webfont.eot');
+  src: url('../fonts/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/PTSans-Regular.woff2') format('woff2'),
+  url('../fonts/PTS55F-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+$ff_PTSans: 'PT Sans', sans-serif;
+
+@font-face {
+  //font-family: 'PT Sans';
+  //src: url('../fonts/PTS56F-webfont.eot');
+  //src: url('../fonts/PTS56F-webfont.eot?#iefix') format('embedded-opentype'),
+  ////url('../fonts/PTS56F-webfont.woff2') format('woff2'), // bad looking font
+  //url('../fonts/PTS56F-webfont.ttf') format('truetype');
+  //font-weight: normal;
+  //font-style: italic;
+}
+//$ff_PTSans_italic: 'pt_sansitalic', sans-serif;
+
+@font-face {
+  //font-family: 'PT Sans';
+  //src: url('../fonts/PTS75F-webfont.eot');
+  //src: url('../fonts/PTS75F-webfont.eot?#iefix') format('embedded-opentype'),
+  ////url('../fonts/PTS75F-webfont.woff2') format('woff2'),
+  //url('../fonts/PTS75F-webfont.woff') format('woff'),
+  //url('../fonts/PTS75F-webfont.ttf') format('truetype');
+  ////url('../fonts/PTS75F-webfont.svg#pt_sansbold') format('svg');
+  //font-weight: bold;
+  //font-style: normal;
+}

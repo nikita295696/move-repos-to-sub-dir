@@ -1,0 +1,847 @@
+// main.scss
+@import "bootstrap";
+@import "overrides";
+@import "fonts";
+
+//@import "modals";
+.member_conditions{
+  // see modal.html.twig
+}
+
+
+$images: "../img/";
+
+// colors
+$clr_blue: #4682be;
+
+// uni
+html{
+
+}
+body, img { transition: all .2s linear }
+
+.anchor-wrapper{
+  text-align: center;
+  > a{
+    display: inline-block;
+  }
+}
+a:hover{transition: all 0.3s ease-in-out 0s}
+
+
+// svg
+polygon, path{
+  pointer-events: visible;
+  transition: all ease 0.3s;
+}
+
+// forms
+input[type=checkbox]{
+  -webkit-appearance: none;
+  display: inline-block;
+  position: relative; top: 3px; vertical-align: baseline;
+  background: #fff;
+  width: 20px !important;
+  height: 20px !important;
+  transition: background 0.5s ease;
+  outline: none;
+  padding: 0;
+  margin-right: 0.25em;
+  border: 1px solid #B5B5B5;
+  &:focus{outline: none}
+  &:checked{
+    background: #0074BD;
+    box-shadow: inset 0 0 0 4px #fff;
+    outline: none;
+  }
+}
+button.form-submit{
+  border: none;
+  &:focus{
+    outline: none;
+    background: inherit;
+  }
+  &:active {
+    background: inherit;
+    transform: translateY(0.2em);
+    text-shadow: rgba(255,255,255,0.5) 0 -1px 0,rgba(0,0,0,0.18) 0 0.18em 0.15em;
+  }
+  .views-exposed-form &:first-child{
+    border-radius: 17px;
+    background-clip: padding-box;
+    //background-color: $clr_red1;
+    color: white;
+    padding: 0.3em 1em 0.4em;
+    &:active:focus{
+      //background: $clr_red1;
+      color: white;
+      outline: none;
+    }
+  }
+}
+
+
+// overrides
+body{
+  font-size: 18px;
+  font-family: $ff_PTSans;
+  line-height: 1.2;
+
+  // remove Chrome links brainfart
+  text-decoration-skip-ink: none;
+
+  &:not(.path-frontpage){
+
+  }
+}
+.navbar-default{
+  background-color: transparent;
+  border: none;
+}
+.navbar-nav{
+  @media (min-width: 768px) {float: none}
+  > li{
+    @media (min-width: 768px) {
+      float: none;
+      [id$='main-menu'] & {float: left} // иначе не будет субменю по хаверу
+    }
+    > a{
+      line-height: inherit;
+      padding: initial;
+    }
+  }
+}
+.nav > li > a{
+  &:hover, &:focus{
+    text-decoration: initial;
+    background: initial;
+  }
+}
+a{
+  &:hover,
+  &:focus{
+    //color: $clr_green_light;
+  }
+}
+.container{}
+  .main-container{
+    > .row{
+
+      body:not(.path-frontpage) & {
+
+      }
+    }
+  }
+    .region-content{}
+      .node-content{ // node.html.twig
+        padding: 0 0 5em;
+        &.node-empty{
+          padding: 0;
+        }
+        @media (max-width: 1199px) {padding: 0 0 3.5em}
+        @media (max-width: 991px) {padding: 0 0 1.5em}
+      }
+iframe{
+  border: none;
+}
+
+
+// headers
+h1, h2, h3, h4{
+  //font-family: $ffamily_amatic_bold;
+}
+h1{
+  .path-views &{
+    //color: $clr_red1;
+    font-size: 3.3em;
+    @media (max-width: 1199px) {font-size: 2.5em}
+  }
+}
+h3, h4{
+
+}
+h3, .h3{
+  @media (max-width: 991px) {font-size: 1.4em}
+  @media (max-width: 767px) {font-size: 1.25em}
+}
+.page-header{
+
+  .region-content & { // views teasers: /news
+
+  }
+  .path-frontpage &{
+
+  }
+  .path-node & {
+      }
+
+}
+.block-title{
+  // in <aside
+  color: $clr_blue;
+  font-size: 1.35em;
+  margin: 0;
+  aside &{
+
+  }
+}
+
+.region-navigation{
+  @include clearfix;
+}
+  .breadcrumb{
+    position: relative;
+    font-size: 0.8em;
+    background: transparent;
+    text-align: left;
+    padding: 0; // ovrd
+    > li + li:before{
+      content: '> ';
+      line-height: 1.2;
+      position: relative; top: 1px;
+      padding: 0 0 0 3px;
+    }
+    a{
+      //color: $clr_viola;
+    }
+  }
+
+
+// pager
+.pagination{
+  display: inline-block;
+  font-size: 0.78em;
+  font-style: italic;
+  padding-left: 0;
+  margin: 0 0 2em;
+  @media (max-width: 1199px){margin: 0 0 1.5em}
+  @media (max-width: 991px) {margin: 0 0 1em}
+  .path-aggregator &{margin: 1.5em 0 0.7em}
+  > li{
+    display: inline-block;
+    vertical-align: middle;
+
+    > a,
+    > span {
+      position: relative;
+      float: left; // Collapse white-space
+      text-decoration: none;
+      line-height: 1;
+      //color: $clr_viola;
+      padding: 0.8em 0.97em;
+      //margin-left: -1px;
+    }
+  }
+
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      z-index: 3;
+    }
+  }
+
+  > .active{
+    > a{
+      //position: relative; top: 9px;
+    }
+
+    > a,
+    > a:hover,
+    > a:focus,
+    > span,
+    > span:hover,
+    > span:focus{
+      color: white;
+      background: $clr_blue;
+      //font-weight: bold;
+      border-radius: 50%;
+      //border: 1px solid #BEBEBE;
+      padding: 2px 5px;
+      //margin: 3px 0 0;
+    }
+  }
+  > .disabled {
+    > span,
+    > span:hover,
+    > span:focus,
+    > a,
+    > a:hover,
+    > a:focus {
+      color: #BEBEBE;
+      cursor: not-allowed;
+    }
+  }
+}
+  .pager__item--next,
+  .pager__item--previous{
+    .pagination & a{ // ovrd
+      padding: 0.8em 0.4em;
+    }
+  }
+  .pager__item--next{
+    span:nth-child(2){
+      display: inline-block;
+      text-indent: -9999em;
+      //background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAQAAAAOu8/qAAAAUElEQVQoz2PYzoAE2bfv3q4E4zFsR4Ux2+/DJNGlGLbHbb+3XRG7FFwSmxTD9oTtd7crMGz/jxX+234Aly6gkSTZFQtzPtH+Ytu+d7syjAcA6Xp/ovu3xa4AAAAASUVORK5CYII=) no-repeat;
+      //width: 13px;
+      //height: 11px;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAKCAYAAACXDi8zAAAATUlEQVQY02Nwa9q3FIj9gZgBGYMIFyD+AMSR6BIgbA3Eb4E4BV0ChI2A+DUQ56NLgLA2ED8D4ip0CS2oRDW6Ua/QjbLCZrkTLudi9SAApHRpreVKLeQAAAAASUVORK5CYII=);
+      width: 6px;
+      height: 10px;
+      margin: 4px 0 0;
+    }
+  }
+  .pager__item--previous{
+    span:nth-child(2){
+      display: inline-block;
+      text-indent: -9999em;
+      //background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAQAAAAOu8/qAAAAW0lEQVQoU2PYzgCFytt3b2eD84AQxlDafn97DLIETEpx+73tsagSECnF7Xe3x6FLgKQUgBIJ6MIQqQPb/23/jw3iNA5mFxZHwFyIxekIfykDJaOxS4Ek96KGBgB5An+b5tB4/gAAAABJRU5ErkJggg==) no-repeat;
+      //width: 13px;
+      //height: 11px;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAKCAYAAACXDi8zAAAATUlEQVQY02Nwa9q3FIj9gZgBGYMIFyD+AMSR6BIgbA3Eb4E4BV0ChI2A+DUQ56NLgLA2ED8D4ip0CS2oRDW6Ua/QjbLCZrkTLudi9SAApHRpreVKLeQAAAAASUVORK5CYII=);
+      width: 6px;
+      height: 10px;
+      transform: rotate(180deg);
+      margin: 4px 0 0;
+    }
+  }
+
+
+.table{
+  thead{
+    font-style: italic;
+    font-size: 0.9em;
+  }
+    th{
+      font-weight: normal;
+      border-color: #e1e1e1;
+      &:first-child{
+        padding: 1.1em 0.5em 1.1em 0;
+      }
+    }
+  > tbody > tr > td{
+    vertical-align: middle;
+    padding: 1.1em 0.5em;
+    border-top: 2px solid #e1e1e1;
+  }
+  tr:last-child{
+    border-bottom: 2px solid #e1e1e1;
+  }
+    td{
+      font-size: 0.9em;
+      &:first-child{
+        padding: 1.1em 0.5em 1.1em 0;
+      }
+    }
+}
+.table-striped > tbody > tr:nth-of-type(odd){
+  background-color: inherit;
+}
+.table-hover > tbody > tr:hover{
+  background-color: initial;
+}
+// specific
+.table{
+
+}
+
+
+header{
+
+  .path-frontpage &{
+
+  }
+  .not-front &{
+
+  }
+}
+  #header_top{
+    .path-frontpage &{
+    }
+  }
+    .region-header{}
+
+
+// frontpage
+header{
+  
+}
+
+
+// layout
+main{
+  > .row{
+    margin: 0;
+  }
+}
+
+
+// slider in front page
+@import "jcarousel";
+
+// all views: news, events
+.views-row{}
+
+// spinner/throbber
+.ajax-progress.ajax-progress-fullscreen{
+  position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.898);
+  z-index: 10;
+  &:before, &:after{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 40%;
+    content: '';
+    display: inline-block;
+    background-color: $clr_blue;
+    width: 10px;
+    height: 10px;
+    -webkit-animation: sk-wanderingCube 1.8s ease-in-out -1.8s infinite both;
+    animation: sk-wanderingCube 1.8s ease-in-out -1.8s infinite both;
+  }
+  &:after{
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+}
+@-webkit-keyframes sk-wanderingCube {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: translateX(30px) rotate(-90deg) scale(0.5);
+    transform: translateX(30px) rotate(-90deg) scale(0.5);
+  }
+  50% {
+    /* Hack to make FF rotate in the right direction */
+    -webkit-transform: translateX(30px) translateY(30px) rotate(-179deg);
+    transform: translateX(30px) translateY(30px) rotate(-179deg);
+  }
+  50.1% {
+    -webkit-transform: translateX(30px) translateY(30px) rotate(-180deg);
+    transform: translateX(30px) translateY(30px) rotate(-180deg);
+  }
+  75% {
+    -webkit-transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+    transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+@keyframes sk-wanderingCube {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: translateX(30px) rotate(-90deg) scale(0.5);
+    transform: translateX(30px) rotate(-90deg) scale(0.5);
+  }
+  50% {
+    /* Hack to make FF rotate in the right direction */
+    -webkit-transform: translateX(30px) translateY(30px) rotate(-179deg);
+    transform: translateX(30px) translateY(30px) rotate(-179deg);
+  }
+  50.1% {
+    -webkit-transform: translateX(30px) translateY(30px) rotate(-180deg);
+    transform: translateX(30px) translateY(30px) rotate(-180deg);
+  }
+  75% {
+    -webkit-transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+    transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+
+// /news page
+
+
+// nodes pages
+footer{
+  .region-content &{
+    font-size: 0.9em;
+    background: transparent;
+    color: inherit;
+    padding: 0; // ovrd
+    //margin: 0;
+    border: none;
+  }
+
+}
+.content{}
+    blockquote{
+      line-height: 1.3;
+      font-style: italic;
+
+      // ovrds
+      font-size: 1em;
+      padding: 0 0 0 1.5em;
+      border-left: 2px solid #7A7A82;
+
+      //border: none;
+      //position: relative;
+      &:before{
+        //position: absolute;
+        //top: 6px;
+        //left: 0;
+        //content: '';
+        //display: inline-block;
+        //background: #7A7A82;
+        //width: 2px;
+        //height: 93.2%;
+      }
+    }
+
+// ckeditor_widgets` classes
+.node-content{
+  .col-2{}
+}
+
+
+// term/tags pages
+
+footer{
+  //color: white;
+  @include clearfix;
+  padding: 2em 0;
+  a{
+    color: inherit;
+    &:hover{
+      //color: white;
+    }
+  }
+  .nav {
+    > li > a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+  .copyrights{
+      
+  }
+    .studio-rights{
+      text-align: right;
+      padding: 0 2em 0 0;
+      @media (max-width: 450px) {
+        text-align: center;
+        padding: 0.5em 15px 0;
+      }
+      >*{
+      }
+        a{color: inherit}
+        p{
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 0.86em;
+          font-family: "Helvetica Neue", Helvetica, Arial; //$ff_helvetica;
+          //letter-spacing: 1px;
+          a{
+            text-decoration: underline;
+          }
+          @media (max-width: 1199px) {
+            display: block;
+            margin: 0 0 0.3em;
+          }
+          br{
+            display: inline;
+            content: ' ';
+            clear:none;
+            margin: 0 0.5em 0 0;
+            @media (max-width: 1199px) {
+              display: block;
+            }
+          }
+        }
+    }
+      .zina_logo{
+        display: inline-block;
+        margin: 0 0.7em 0 0;
+        @media (max-width: 1199px){
+          display: block;
+          margin: 0 0 0.3em;
+        }
+        @media (max-width: 991px) {margin: 0 0 0.5em}
+        img{
+          width: 98px;
+          height: 18px;
+        }
+      }
+
+
+// user is logged in
+.path-user{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  .main-container{
+    flex: 1;
+  }
+    [typeof="schema:Person"]{ // /user/44, "View" tab
+      margin: 0 0 3em;
+
+      display: flex;
+    }
+}
+    .user_picture{
+      float: left;
+      margin: 0 1.5em 0.9em 0;
+      .field{
+        margin: 0;
+      }
+    }
+    [class*='user-picture']{
+      .path-node &{
+        display: none;
+      }
+    }
+    .user_info_wrapper{
+      padding: 0.5em 0 0;
+      flex-basis: 68%;
+      .field{
+        padding: 15px 0 20px;
+        border-bottom: 2px solid #E1E1E1;
+        &:first-child{
+          padding-top: 0;
+        }
+      }
+        .field--label{
+          font-style: italic;
+          font-size: 0.85em;
+          margin: 0 0 0.4em;
+          &:after{
+            content: ':';
+          }
+        }
+        .field--item{
+          //color: $clr_viola;
+          font-weight: bold;
+          font-size: 1.1em;
+          a{
+            color: inherit;
+          }
+        }
+    }
+
+  .user-login-form,
+  .user-register-form{
+    .form-item{
+      margin: 0 0 0.7em;
+      label{
+        margin: 0 0 0.5em; // ovrd
+      }
+    }
+      label{
+        font-weight: normal;
+        font-size: 1.2em;
+      }
+      .form-control{
+        width: 100%;
+        background: transparent;
+        //color: white;
+        //height: 58px;
+        padding: 1.4em 1em;
+        box-shadow: none;
+        //-webkit-box-shadow: 0 0 0 30px grey inset;
+        border-radius: 0;
+        border: 1px solid #959595;
+        @media (max-width: 916px) {height: 42px}
+      }
+  }
+
+  .user-login-form{
+    width: 21em;
+    margin: 0 0 2em;
+    .form-item{
+      margin: 0 0 1.5em;
+    }
+    .modal & .form-actions{
+      // double made by $form['actions']['submit'] = ['#type' => 'submit', '#value' => t('Enter')];
+      // to change submit text
+      display: none;
+    }
+    .forgot-password,
+    .actions-suffix{
+      a{
+        //color: $clr_lazur;
+        font-size: 1.2em;
+        text-decoration: underline;
+      }
+    }
+    .actions-suffix{
+      margin: 0 0 1.4em;
+    }
+    button.form-submit:focus{
+      background: blue;
+    }
+  }
+    .submit-user_login{
+      [id='drupal-modal'] .modal-footer &{
+        padding: 0.7em 4em 0.4em;
+      }
+    }
+
+  .user-form{
+    margin: 0 0 2em;
+    label, input{
+      display: inline-block;
+      margin: 0 -3px 0 0;
+    }
+    label{
+      &:after{
+        content: ':';
+      }
+      width: 30%;
+    }
+    label + input{
+      width: 70%;
+    }
+    .form-type-checkbox{
+      label{
+        span{
+          display: inline-block;
+          margin: 2px 0 0 0.4em;
+          position: relative;
+          top: 2px;
+          @media (max-width: 490px) {text-align: left; margin: 2px 1em 0 0.4em}
+        }
+      }
+      label{
+        width: auto;
+        &:after{
+          display: none;
+        }
+      }
+      input{
+        display: inline-block;
+        margin: 0 5px 0 -20px;
+      }
+    }
+    [id='edit-actions']{
+      font-size: 1.2em;
+      margin: 1.3em 0 0;
+      button{
+        font-size: inherit;
+        padding: 6px 1.6em;
+      }
+    }
+  }
+    .form-type-password{
+      margin: 0.3em 0 0;
+    }
+
+  .user-register-form{
+    label{
+      display: block;
+      width: auto;
+      font-weight: normal;
+    }
+      .form-required{
+        &:after{
+          content: '*';
+        }
+      }
+    .modal & .form-actions{
+      // double made by $form['actions']['submit'] = ['#type' => 'submit', '#value' => t('Enter')];
+      // to change submit text
+      display: none;
+    }
+    button.form-submit:focus{
+      background: lightblue;
+    }
+  }
+    .field--name-field-phone > .form-item{
+      margin: 0;
+    }
+    .password-strength{
+      font-size: 0.8em;
+      margin: 0 0 0.5em;
+    }
+    .password-confirm{
+      margin: 0 0 0.5em;
+      .error{
+        color: red;
+        font-weight: bold;
+      }
+      .ok{
+        color: green;
+        font-weight: bold;
+      }
+    }
+    .password-suggestions{
+      text-align: left;
+      font-size: 0.9em;
+    }
+    .form-item-terms-of-use{
+      font-size: 0.8em;
+      margin: 0 0 1.8em;
+      input{
+        display: inline-block;
+        margin: 0 0.7em 0 0;
+      }
+      label{
+        display: inline;
+        &:after{
+          display: none;
+        }
+      }
+      .user-register-form & {
+        margin: 0 0 2.1em;
+      }
+    }
+    .modal-warning{
+      color: violet;
+      font-size: 1.1em;
+      margin: 0 0 0.5em;
+    }
+.submit-user_register{
+  [id='drupal-modal'] .modal-footer & { // ovrd
+    padding: 0.8em 1.7em 0.4em;
+  }
+}
+
+@mixin register_btn{
+  margin: 1.2em 0 3em;
+  .btn{
+    color: white;
+    font-size: 1.2em;
+    background-color: #4682BE;
+    padding: 0.5em 2em;
+    border-radius: 0;
+    transition: all 0.1s ease-in-out 0s;
+
+    &:hover{
+      background-color: #2f97ff;
+    }
+  }
+  span{
+    text-transform: uppercase;
+  }
+}
+.user-register-form,
+.user-login-form,
+.user-pass{
+  [id='edit-actions']{
+    @include register_btn;
+  }
+}
