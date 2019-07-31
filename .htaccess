@@ -1,5 +1,16 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteEngine on
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+
+# RewriteRule ^([a-zA-Z]*)/?([a-zA-Z]*)?/?([0-9a-zA-Z\-]*)?$ index.php?controller=$1&action=$2&id=$3 [NC,L]
+
+# RewriteEngine on
+
+# запрещает показ списка файлов
+Options -Indexes
+
+<Files "composer.json">
+    Deny from all
+</Files>
 
 RewriteRule ^([a-zA-Z]*)/?([a-zA-Z]*)?/?([0-9a-zA-Z\-]*)?$ index.php?controller=$1&action=$2&id=$3 [NC,L]
